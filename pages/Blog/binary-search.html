@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Algorithm: Implementation and Analysis | Bayanda</title>
+    <style>
+        :root {
+            --primary-color: #8a85ff;
+            --secondary-color: #7161ef;
+            --dark-color: #121212;
+            --medium-color: #1e1e1e;
+            --card-color: #252525;
+            --light-color: #e0e0e0;
+            --accent-color: #00b7ff;
+            --text-color: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--medium-color);
+            color: var(--text-color);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        nav {
+            background-color: var(--medium-color);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .blog-full {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--card-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-full h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .blog-full .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .blog-full p, .blog-full ul, .blog-full ol {
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+        }
+
+        .blog-full h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+        }
+        
+        .blog-full h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--medium-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-to-home:hover {
+            text-decoration: underline;
+        }
+        
+        .code-block {
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            border-left: 4px solid var(--accent-color);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            white-space: pre;
+        }
+        
+        .algorithm-visualization {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table th, table td {
+            padding: 0.75rem;
+            border: 1px solid #444;
+        }
+        
+        table th {
+            background-color: var(--medium-color);
+        }
+        
+        .note {
+            background-color: rgba(138, 133, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bayanda</h1>
+            <p>Backend Developer</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <article class="blog-full">
+            <h1>Binary Search Algorithm: Implementation and Analysis</h1>
+            <div class="date">April 28, 2025</div>
+            <div>
+                <span class="tag">Algorithms</span>
+                <span class="tag">Java</span>
+                <span class="tag">Data Structures</span>
+            </div>
+            
+            <p>Binary search is one of the most efficient searching algorithms with a time complexity of O(log n). It finds the position of a target value within a <strong>sorted array</strong> by repeatedly dividing the search interval in half.</p>
+            
+            <div class="algorithm-visualization">
+                <img src="/api/placeholder/600/300" alt="Binary Search Visualization">
+                <p><em>Binary Search: Each step halves the search space</em></p>
+            </div>
+            
+            <h2>Iterative Implementation</h2>
+            
+            <pre class="code-block">public static int binarySearchIterative(int[] array, int target) {
+    int left = 0;
+    int right = array.length - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (array[mid] == target) {
+            return mid;
+        }
+        
+        if (array[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}</pre>
+            
+            <h2>Time and Space Complexity</h2>
+            
+            <p>Time Complexity: O(log n) - because the algorithm divides the search space in half with each iteration.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Array Size</th>
+                        <th>Linear Search</th>
+                        <th>Binary Search</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1,000</td>
+                        <td>1,000 comparisons</td>
+                        <td>~10 comparisons</td>
+                    </tr>
+                    <tr>
+                        <td>1,000,000</td>
+                        <td>1,000,000 comparisons</td>
+                        <td>~20 comparisons</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Space Complexity:</p>
+            <ul>
+                <li><strong>Iterative:</strong> O(1) - constant space</li>
+                <li><strong>Recursive:</strong> O(log n) - due to call stack</li>
+            </ul>
+            
+            <h2>Common Pitfalls</h2>
+            
+            <ul>
+                <li><strong>Unsorted Array:</strong> Binary search only works on sorted arrays</li>
+                <li><strong>Integer Overflow:</strong> Use <code>left + (right - left) / 2</code> instead of <code>(left + right) / 2</code></li>
+                <li><strong>Off-by-one Errors:</strong> Be careful with boundary updates</li>
+            </ul>
+            
+            <div class="note">
+                <p><strong>Note:</strong> In most practical scenarios, the iterative implementation is preferred due to its constant space complexity.</p>
+            </div>
+            
+            <h2>Real-World Applications</h2>
+            
+            <p>Binary search is widely used in:</p>
+            <ul>
+                <li>Database indexes (B-trees, B+ trees)</li>
+                <li>Dictionary and phonebook applications</li>
+                <li>Git's <code>bisect</code> command</li>
+                <li>Machine learning algorithms</li>
+                <li>Network routing tables</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            
+            <p>Binary search demonstrates the power of divide-and-conquer with O(log n) time complexity, making it extremely efficient for searching in large sorted datasets. The choice between iterative and recursive implementations depends on your specific requirements, with iterative typically being more memory-efficient.</p>
+            
+            <a href="blogs-list.html" class="back-to-home">← Back to Blog List</a>
+        </article>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Bayanda</div>
+                <p>Passionate about creating efficient and scalable backend solutions.</p>
+                <div class="social-icons">
+                    <a href="#"><span>GitHub</span></a>
+                    <a href="#"><span>LinkedIn</span></a>
+                    <a href="#"><span>Twitter</span></a>
+                </div>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Bayanda. All rights reserved | Designed with ❤️ by Bayanda</p>
+        </div>
+    </footer>
+</body>
+</html>

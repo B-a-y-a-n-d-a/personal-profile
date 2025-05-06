@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Bayanda</title>
+    <style>
+        :root {
+            --primary-color: #8a85ff;
+            --secondary-color: #7161ef;
+            --dark-color: #121212;
+            --medium-color: #1e1e1e;
+            --card-color: #252525;
+            --light-color: #e0e0e0;
+            --accent-color: #00b7ff;
+            --text-color: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--medium-color);
+            color: var(--text-color);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        nav {
+            background-color: var(--medium-color);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            color: var(--primary-color);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .blog-card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            color: var(--light-color);
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .blog-tags {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .read-more:hover {
+            background-color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--medium-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-content > div {
+                margin-bottom: 2rem;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bayanda</h1>
+            <p>Backend Developer</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <h2 class="section-title" id="blog">Latest Blog Posts</h2>
+        
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="../../images/binarySearch.jpg" alt="Binary Search Algorithm" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Binary Search Algorithm: Implementation and Analysis</h3>
+                    <div class="blog-date">April 28, 2025</div>
+                    <div class="blog-tags">
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">Data Structures</span>
+                    </div>
+                    <p class="blog-excerpt">Binary search is one of the most efficient searching algorithms with a time complexity of O(log n). It finds the position of a target value within a sorted array by repeatedly dividing the search interval in half.</p>
+                    <a href="binary-search.html" class="read-more">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <img src="../../images/AI.jpg" alt="Supervised vs Unsupervised AI" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">Supervised vs. Unsupervised AI: Understanding the Difference</h3>
+                    <div class="blog-date">May 3, 2025</div>
+                    <div class="blog-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                    <p class="blog-excerpt">Supervised and unsupervised learning represent two fundamental approaches in artificial intelligence. While supervised learning relies on labeled data for training, unsupervised learning discovers patterns without predefined labels.</p>
+                    <a href="supervised-vs-unsupervised.html" class="read-more">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <img src="../../images/RESTFUL.jpg" alt="RESTful API Design" class="blog-img">
+                <div class="blog-content">
+                    <h3 class="blog-title">RESTful API Design Best Practices</h3>
+                    <div class="blog-date">April 15, 2025</div>
+                    <div class="blog-tags">
+                        <span class="tag">API</span>
+                        <span class="tag">Backend</span>
+                        <span class="tag">REST</span>
+                    </div>
+                    <p class="blog-excerpt">Designing robust and scalable RESTful APIs requires following established best practices. From proper resource naming to status code usage, learn how to create APIs that developers will love.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Bayanda</div>
+                <p>Passionate about creating efficient and scalable backend solutions.</p>
+                <div class="social-icons">
+                    <a href="#"><span>GitHub</span></a>
+                    <a href="#"><span>LinkedIn</span></a>
+                    <a href="#"><span>Twitter</span></a>
+                </div>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Bayanda. All rights reserved | Designed with ❤️ by Bayanda</p>
+        </div>
+    </footer>
+</body>
+</html>
