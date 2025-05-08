@@ -1,465 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skills | Bayanda</title>
-    <style>
-        :root {
-            --primary-color: #8a85ff;
-            --secondary-color: #7161ef;
-            --dark-color: #121212;
-            --medium-color: #1e1e1e;
-            --card-color: #252525;
-            --light-color: #e0e0e0;
-            --accent-color: #00b7ff;
-            --text-color: #ffffff;
-            --text-secondary: #b3b3b3;
-            
-            --java-color: #b07219;
-            --html-color: #e34c26;
-            --css-color: #563d7c;
-            --js-color: #f1e05a;
-            --node-color: #68a063;
-            --php-color: #4F5D95;
-            --react-color: #61dafb;
-            --sql-color: #e38c00;
-            --python-color: #3572A5;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--dark-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--medium-color);
-            color: var(--text-color);
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        nav {
-            background-color: var(--medium-color);
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin: 3rem 0;
-            color: var(--primary-color);
-        }
-
-        .section-description {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: var(--text-secondary);
-        }
-        
-        /* Skills Layout */
-        .skills-container {
-            margin-bottom: 4rem;
-        }
-        
-        .skill-category {
-            margin-bottom: 3rem;
-        }
-        
-        .category-title {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        /* Skill Bars */
-        .skill-bars {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-        
-        .skill-item {
-            background-color: var(--card-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .skill-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-        
-        .skill-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .skill-years {
-            background-color: var(--medium-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        
-        .skill-description {
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        .skill-level-container {
-            width: 100%;
-            height: 10px;
-            background-color: var(--medium-color);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        
-        .skill-level {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1.5s ease-in-out;
-        }
-        
-        .skill-percentage {
-            text-align: right;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            color: var(--text-secondary);
-        }
-        
-        /* Skill Hexagons */
-        .skill-hexagons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            padding: 1rem;
-        }
-        
-        .hexagon-item {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 10px 60px;
-        }
-        
-        .hexagon {
-            position: relative;
-            width: 150px;
-            height: 86.6px; /* height = width * 0.866 */
-            background-color: var(--card-color);
-            margin: 43.3px 0; /* margin = height/2 */
-            border-left: solid 5px var(--primary-color);
-            border-right: solid 5px var(--primary-color);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hexagon:before,
-        .hexagon:after {
-            content: "";
-            position: absolute;
-            width: 106.07px; /* width = height / sin(60deg) */
-            height: 106.07px;
-            -webkit-transform: scaleY(0.5774) rotate(-45deg);
-            -ms-transform: scaleY(0.5774) rotate(-45deg);
-            transform: scaleY(0.5774) rotate(-45deg);
-            background-color: inherit;
-            left: 21.9670px; /* left = width / 2 - width of border */
-        }
-        
-        .hexagon:before {
-            top: -53.0330px; /* top = -height / 2 */
-            border-top: solid 7.0711px var(--primary-color); /* border width = 5 / cos(45deg) */
-            border-right: solid 7.0711px var(--primary-color);
-        }
-        
-        .hexagon:after {
-            bottom: -53.0330px; /* bottom = -height / 2 */
-            border-bottom: solid 7.0711px var(--primary-color);
-            border-left: solid 7.0711px var(--primary-color);
-        }
-        
-        .hexagon-item:hover .hexagon {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .hexagon-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .hexagon-icon {
-            font-size: 2rem;
-            margin-bottom: 5px;
-        }
-        
-        .hexagon-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .hex-skill-level {
-            position: absolute;
-            bottom: -45px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        /* Skill Cards */
-        .skill-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-card {
-            background: var(--card-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border-top: 4px solid;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .skill-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 50px 50px 0;
-            border-color: transparent var(--medium-color) transparent transparent;
-        }
-        
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .card-title i {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-        
-        .card-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .card-content {
-            margin-bottom: 1rem;
-        }
-        
-        .skill-tag {
-            display: inline-block;
-            background-color: var(--medium-color);
-            color: var(--text-secondary);
-            padding: 0.3rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .skill-rating {
-            display: flex;
-            margin-top: 1rem;
-        }
-        
-        .star {
-            width: 20px;
-            height: 20px;
-            margin-right: 3px;
-            background-color: var(--text-secondary);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-        
-        .star.filled {
-            background-color: var(--accent-color);
-        }
-        
-        footer {
-            background-color: var(--medium-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: var(--light-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-icons a {
-            color: var(--light-color);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: var(--accent-color);
-        }
-        
-        .copyright {
-            width: 100%;
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hexagon-item {
-                margin: 0 auto 60px;
-            }
-            
-            .skill-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-content > div {
-                margin-bottom: 2rem;
-            }
-            
-            .social-icons {
-                justify-content: center;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .skill-bars {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../../css/styles.css" />
 </head>
 <body>
     <header>
@@ -468,7 +13,7 @@
             <p>Backend Developer</p>
         </div>
     </header>
-    
+
     <nav>
         <div class="container">
             <ul>
@@ -480,25 +25,23 @@
             </ul>
         </div>
     </nav>
-    
+
     <main class="container">
         <h2 class="section-title" id="skills">Technical Skills</h2>
         <p class="section-description">
             Over the years, I've developed a diverse set of programming skills with a focus on backend development.
             Here's a comprehensive view of my technical expertise.
         </p>
-        
+
         <div class="skills-container">
             <div class="skill-category">
                 <h3 class="category-title">Primary Skills</h3>
                 <div class="skill-bars">
-                    <div class="skill-item" style="border-left: 4px solid var(--java-color)">
+                    <div class="skill-item java">
                         <div class="skill-header">
                             <div class="skill-name">
-                                <div class="skill-icon" style="color: var(--java-color)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor">
-                                        <path d="M277.74 312.9c9.8-6.7 23.4-12.5 23.4-12.5s-38.7 7-77.2 10.2c-47.1 3.9-97.7 4.7-123.1 1.3-60.1-8 33-30.1 33-30.1s-36.1-2.4-80.6 19c-52.5 25.4 130 37 224.5 12.1zm-85.4-32.1c-19-42.7-83.1-80.2 0-145.8C296 53.2 242.84 0 242.84 0c21.5 84.5-75.6 110.1-110.7 162.6-23.9 35.9 11.7 74.4 60.2 118.2zm114.6-176.2c.1 0-175.2 43.8-91.5 140.2 24.7 28.4-6.5 54-6.5 54s62.7-32.4 33.9-72.9c-26.9-37.8-47.5-56.6 64.1-121.3zm-6.1 270.5a12.19 12.19 0 0 1-2 2.6c128.3-33.7 81.1-118.9 19.8-97.3a17.33 17.33 0 0 0-8.2 6.3 70.45 70.45 0 0 1 11-3c31-6.5 75.5 41.5-20.6 91.4zM348 437.4s14.5 11.9-15.9 21.2c-57.9 17.5-240.8 22.8-291.6.7-18.3-7.9 16-19 26.8-21.3 11.2-2.4 17.7-2 17.7-2-20.3-14.3-131.3 28.1-56.4 40.2C232.84 509.4 401 461.3 348 437.4zM124.44 396c-78.7 22 47.9 67.4 148.1 24.5a185.89 185.89 0 0 1-28.2-13.8c-44.7 8.5-65.4 9.1-106 4.5-33.5-3.8-13.9-15.2-13.9-15.2zm179.8 97.2c-78.7 14.8-175.8 13.1-233.3 3.6 0-.1 11.8 9.7 72.4 13.6 92.2 5.9 233.8-3.3 237.1-46.9 0 0-6.4 16.5-76.2 29.7zM260.64 353c-59.2 11.4-93.5 11.1-136.8 6.6-33.5-3.5-11.6-19.7-11.6-19.7-86.8 28.8 48.2 61.4 169.5 25.9a60.37 60.37 0 0 1-21.1-12.8z"/>
-                                    </svg>
+                                <div class="skill-icon java-icon">
+                                    <!-- Java Icon -->
                                 </div>
                                 Java (JEE Framework)
                             </div>
@@ -513,14 +56,12 @@
                         </div>
                         <div class="skill-percentage">Advanced - 70%</div>
                     </div>
-                    
-                    <div class="skill-item" style="border-left: 4px solid var(--node-color)">
+
+                    <div class="skill-item node">
                         <div class="skill-header">
                             <div class="skill-name">
-                                <div class="skill-icon" style="color: var(--node-color)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
-                                        <path d="M224 508c-6.7 0-13.5-1.8-19.4-5.2l-61.7-36.5c-9.2-5.2-4.7-7-1.7-8 12.3-4.3 14.8-5.2 27.9-12.7 1.4-.8 3.2-.5 4.6.4l47.4 28.1c1.7 1 4.1 1 5.7 0l184.7-106.6c1.7-1 2.8-3 2.8-5V149.3c0-2.1-1.1-4-2.9-5.1L226.8 37.7c-1.7-1-4-1-5.7 0L36.6 144.3c-1.8 1-2.9 3-2.9 5.1v213.1c0 2 1.1 4 2.9 4.9l50.6 29.2c27.5 13.7 44.3-2.4 44.3-18.7V167.5c0-3 2.4-5.3 5.4-5.3h23.4c2.9 0 5.4 2.3 5.4 5.3V378c0 36.6-20 57.6-54.7 57.6-10.7 0-19.1 0-42.5-11.6l-48.4-27.9C8.1 389.2.7 376.3.7 362.4V149.3c0-13.8 7.4-26.8 19.4-33.7L204.6 9c11.7-6.6 27.2-6.6 38.8 0l184.7 106.7c12 6.9 19.4 19.8 19.4 33.7v213.1c0 13.8-7.4 26.7-19.4 33.7L243.4 502.8c-5.9 3.4-12.6 5.2-19.4 5.2zm149.1-210.1c0-39.9-27-50.5-83.7-58-57.4-7.6-63.2-11.5-63.2-24.9 0-11.1 4.9-25.9 47.4-25.9 37.9 0 51.9 8.2 57.7 33.8.5 2.4 2.7 4.2 5.2 4.2h24c1.5 0 2.9-.6 3.9-1.7s1.5-2.6 1.4-4.1c-3.7-44.1-33-64.6-92.2-64.6-52.7 0-84.1 22.2-84.1 59.5 0 40.4 31.3 51.6 81.8 56.6 60.5 5.9 65.2 14.8 65.2 26.7 0 20.6-16.6 29.4-55.5 29.4-48.9 0-59.6-12.3-63.2-36.6-.4-2.6-2.6-4.5-5.3-4.5h-23.9c-3 0-5.3 2.4-5.3 5.3 0 31.1 16.9 68.2 97.8 68.2 58.4-.1 92-23.2 92-63.4z"/>
-                                    </svg>
+                                <div class="skill-icon node-icon">
+                                    <!-- Node.js Icon -->
                                 </div>
                                 Node.js (Express JS)
                             </div>
@@ -535,14 +76,12 @@
                         </div>
                         <div class="skill-percentage">Advanced - 65%</div>
                     </div>
-                    
-                    <div class="skill-item" style="border-left: 4px solid var(--sql-color)">
+
+                    <div class="skill-item sql">
                         <div class="skill-header">
                             <div class="skill-name">
-                                <div class="skill-icon" style="color: var(--sql-color)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
-                                        <path d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"/>
-                                    </svg>
+                                <div class="skill-icon sql-icon">
+                                    <!-- SQL Icon -->
                                 </div>
                                 PL/SQL
                             </div>
@@ -557,14 +96,12 @@
                         </div>
                         <div class="skill-percentage">Proficient - 80%</div>
                     </div>
-                    
-                    <div class="skill-item" style="border-left: 4px solid var(--php-color)">
+
+                    <div class="skill-item php">
                         <div class="skill-header">
                             <div class="skill-name">
-                                <div class="skill-icon" style="color: var(--php-color)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor">
-                                        <path d="M320 104.5c171.4 0 303.2 72.2 303.2 151.5S491.3 407.5 320 407.5c-171.4 0-303.2-72.2-303.2-151.5S148.7 104.5 320 104.5m0-16.8C143.3 87.7 0 163 0 256s143.3 168.3 320 168.3S640 349 640 256 496.7 87.7 320 87.7zM218.2 242.5c-7.9 40.5-35.8 36.3-70.1 36.3l13.7-70.6c38 0 63.8-4.1 56.4 34.3zM97.4 350.3h36.7l8.7-44.8c41.1 0 66.6 3 90.2-19.1 26.1-24 32.9-66.7 14.3-88.1-9.7-11.2-25.3-16.7-46.5-16.7h-70.7L97.4 350.3zm185.7-213.6h36.5l-8.7 44.8c31.5 0 60.7-2.3 74.8 10.7 14.8 13.6 7.7 31-8.3 113.1h-37c15.4-79.4 18.3-86 12.7-92-5.4-5.8-17.7-4.6-47.4-4.6l-18.8 96.6h-36.5l32.7-168.6zM505 242.5c-8 41.1-36.7 36.3-70.1 36.3l13.7-70.6c38.2 0 63.8-4.1 56.4 34.3zM384.2 350.3H421l8.7-44.8c43.2 0 67.1 2.5 90.2-19.1 26.1-24 32.9-66.7 14.3-88.1-9.7-11.2-25.3-16.7-46.5-16.7H417l-32.8 168.7z"/>
-                                    </svg>
+                                <div class="skill-icon php-icon">
+                                    <!-- PHP Icon -->
                                 </div>
                                 PHP (Laravel)
                             </div>
@@ -581,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="skill-category">
                 <h3 class="category-title">Frontend Development</h3>
                 <div class="skill-cards">
@@ -599,6 +136,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
