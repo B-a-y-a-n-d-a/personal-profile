@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Bayanda</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bayanda</h1>
+            <p>Backend Developer</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="Skills/skills.html">Skills</a></li>
+                <li><a href="Projects/projects.html">Projects</a></li>
+                <li><a href="Blog/blogs-list.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-description">Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <p>Johannesburg, South Africa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>bayandamlomo1@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p>+27 XX XXX XXXX</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/yourusername" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                        </button>
+                        
+                        <div id="form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bayanda. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        // Initialize EmailJS
+        (function() {
+            // Add your EmailJS user ID and service ID here
+            emailjs.init("YOUR_USER_ID");
+        })();
+        
+        // Handle form submission
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const formStatus = document.getElementById('form-status');
+            
+            btnText.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            formStatus.textContent = '';
+            
+            // Prepare form data for EmailJS
+            const templateParams = {
+                name: this.name.value,
+                email: this.email.value,
+                subject: this.subject.value,
+                message: this.message.value
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function() {
+                    // Success
+                    formStatus.textContent = 'Your message has been sent successfully!';
+                    formStatus.className = 'form-status success';
+                    btnText.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    // Error
+                    formStatus.textContent = 'Oops! There was an error sending your message.';
+                    formStatus.className = 'form-status error';
+                    btnText.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    console.error('EmailJS error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
