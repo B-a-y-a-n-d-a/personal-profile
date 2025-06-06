@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Projects | Bayanda</title>
     <link rel="stylesheet" href="../../css/styles.css" />
+    <script src="../../js/script.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -19,7 +22,7 @@
             <ul>
                 <li><a href="../About/about.html">About</a></li>
                 <li><a href="../Skills/skills.html">Skills</a></li>
-                <li><a href="../Projects/projects.html">Projects</a></li>
+                <li><a href="../Projects/projects.html" class="active">Projects</a></li>
                 <li><a href="../Blog/blogs-list.html">Blog</a></li>
                 <li><a href="../Contact/contact.html">Contact</a></li>
             </ul>
@@ -28,37 +31,115 @@
     
     <main class="container">
         <h2 class="section-title" id="projects">My Projects</h2>
+        <p class="section-description">
+            Explore my portfolio of backend development projects, APIs, and full-stack applications.
+            Each project demonstrates different technologies and problem-solving approaches.
+        </p>
+        
+        <!-- GitHub Stats Dashboard -->
+        <div class="github-stats" id="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="total-repos">-</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="total-stars">-</div>
+                    <div class="stat-label">Stars</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="total-forks">-</div>
+                    <div class="stat-label">Forks</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="total-languages">-</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i>
+                All Projects
+            </button>
+            <button class="filter-btn" data-filter="web">
+                <i class="fas fa-globe"></i>
+                Web Apps
+            </button>
+            <button class="filter-btn" data-filter="api">
+                <i class="fas fa-server"></i>
+                APIs
+            </button>
+            <button class="filter-btn" data-filter="mobile">
+                <i class="fas fa-mobile-alt"></i>
+                Mobile
+            </button>
+            <button class="filter-btn" data-filter="tool">
+                <i class="fas fa-tools"></i>
+                Tools
+            </button>
+        </div>
+
+        <!-- Search and Sort Controls -->
+        <div class="project-controls">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="project-search" placeholder="Search projects...">
+            </div>
+            <div class="sort-container">
+                <select id="project-sort">
+                    <option value="updated">Recently Updated</option>
+                    <option value="stars">Most Stars</option>
+                    <option value="forks">Most Forks</option>
+                    <option value="name">Name (A-Z)</option>
+                    <option value="created">Newest First</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Projects Container -->
         <div id="projects-container">
-            <div class="loading">Loading projects from GitHub...</div>
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading projects from GitHub...</p>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container" id="load-more-container" style="display: none;">
+            <button id="load-more-btn" class="load-more-btn">
+                <i class="fas fa-chevron-down"></i>
+                Load More Projects
+            </button>
         </div>
     </main>
     
     <footer>
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo">Bayanda</div>
-                <p>Passionate about creating efficient and scalable backend solutions.</p>
-                <div class="social-icons">
-                    <a href="https://github.com/B-a-y-a-n-d-a" target="_blank"><span>GitHub</span></a>
-                    <a href="#"><span>LinkedIn</span></a>
-                    <a href="#"><span>Twitter</span></a>
-                </div>
-            </div>
-            <div>
-                <h3>Quick Links</h3>
-                <div class="footer-links">
-                    <a href="index.html#about">About</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="index.html#contact">Contact</a>
-                </div>
-            </div>
-        </div>
         <div class="copyright">
             <p>&copy; 2025 Bayanda. All rights reserved | Designed with ❤️ by Bayanda</p>
         </div>
     </footer>
 
-    <script src="../../js/script.js"></script>
+    <script src="../../js/projects.js"></script>
 </body>
 </html>
