@@ -21,11 +21,7 @@ Welcome to my personal portfolio! This is a simple yet professional website buil
 
 ## 📁 Live Preview
 
-👉 [View Portfolio Live](https://your-username.github.io/professional-profile)
-
-> Replace with your actual GitHub Pages URL once deployed.
-
-## 📸 Screenshots (Optional)
+👉 [View Portfolio Live](https://your-username.github.io/professional-profile/)
 
 
 
