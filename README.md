@@ -1,4 +1,4 @@
-# 🌐 Personal Portfolio – [Your Name]
+# 🌐 Personal Portfolio – Bayanda
 
 Welcome to my personal portfolio! This is a simple yet professional website built using **HTML**, **CSS**, and **JavaScript** to showcase my skills, projects, and career background as a Software Developer.
 
